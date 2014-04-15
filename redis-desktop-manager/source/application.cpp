@@ -234,7 +234,7 @@ void MainWin::OnReloadServerInTree()
 {
     QStandardItem * item = ui.serversTreeView->getSelectedItem(RedisServerItem::TYPE);
 
-    if (item == nullptr) 
+    if (item == nullptr)
         return;    
 
     try {

@@ -108,52 +108,9 @@ unix {
         QMAKE_BUNDLE_DATA += CRASHREPORTER_APP
 
     }
-    else { # ubuntu & debian
-
-        QMAKE_CXXFLAGS += -std=gnu++0x -g #workaround for google breakpad
-
-        LIBS += -Wl,-rpath=\\\$$ORIGIN/../lib #don't remove!!!
-        LIBS += /usr/local/lib/libssh2.so  /usr/local/lib/libbreakpad.a /usr/local/lib/libbreakpad_client.a
-
-        PRE_TARGETDEPS +=/usr/local/lib/libssh2.so \
-                         /usr/local/lib/libbreakpad.a \
-                         /usr/local/lib/libbreakpad_client.a \
-
-        INCLUDEPATH += $$BREAKPADDIR/ \
-            $$BREAKPADDIR/client/linux/handler/ \
-            $$BREAKPADDIR/client/linux/crash_generation/ \
-            $$BREAKPADDIR/client/linux/minidump_writer/ \
-            $$BREAKPADDIR/client/linux/log/ \
-            $$BREAKPADDIR/client/ \
-            $$BREAKPADDIR/common/linux/ \
-            $$BREAKPADDIR/common/ \
-            $$BREAKPADDIR/google_breakpad/common/ \
-            $$BREAKPADDIR/processor/ \
-            $$BREAKPADDIR/third_party/lss/ \
-
-        DEPENDPATH += $$BREAKPADDIR/ \
-            $$BREAKPADDIR/client/linux/handler/ \
-            $$BREAKPADDIR/client/linux/crash_generation/ \
-            $$BREAKPADDIR/client/linux/minidump_writer/ \
-            $$BREAKPADDIR/client/linux/log/ \
-            $$BREAKPADDIR/client/ \
-            $$BREAKPADDIR/common/linux/ \
-            $$BREAKPADDIR/common/ \
-            $$BREAKPADDIR/google_breakpad/common/ \
-            $$BREAKPADDIR/processor/ \
-            $$BREAKPADDIR/third_party/lss/ \
-
-        target.path = /usr/share/redis-desktop-manager/bin
-        target.files = $$DESTDIR/rdm $$DESTDIR/crashreporter qt.conf rdm.png
-        INSTALLS += target
-
-        deskicon.path = /usr/share/applications
-        deskicon.files = rdm.desktop
-        INSTALLS += deskicon
-
-        data.path = /usr/share/redis-desktop-manager/lib
-        data.files = lib/*
-        INSTALLS += data
+    else {
+        QMAKE_CXXFLAGS += -std=c++11
+        LIBS += -lssh2
     }
 }
 

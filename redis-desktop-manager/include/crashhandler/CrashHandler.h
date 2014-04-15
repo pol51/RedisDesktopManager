@@ -2,7 +2,6 @@
 
 #include <QtCore/QString>
 
-class CrashHandlerPrivate;
 class CrashHandler
 {
 public:
@@ -16,6 +15,5 @@ private:
     CrashHandler();
     ~CrashHandler();
     Q_DISABLE_COPY(CrashHandler)
-        CrashHandlerPrivate* d;
 };
 

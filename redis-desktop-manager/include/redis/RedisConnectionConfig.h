@@ -10,6 +10,8 @@
 class RedisConnectionConfig
 {
 public:
+    static const char DEFAULT_NAMESPACE_SEPARATOR = ':';
+
     // redis connection parameters
     QString name;
     QString host;
@@ -18,24 +20,23 @@ public:
 
     // ssh tunnel connection parameters
     QString sshHost;
-    int sshPort;
+    int sshPort = DEFAULT_SSH_PORT;
     QString sshUser;
     QString sshPassword;
-	QString sshPublicKey;
-	QString sshPrivateKey;	
+    QString sshPublicKey;
+    QString sshPrivateKey;
 
     //timeouts 
-    int connectionTimeout;
-    int executeTimeout;
+    int connectionTimeout = DEFAULT_TIMEOUT_IN_MS;
+    int executeTimeout    = DEFAULT_TIMEOUT_IN_MS;
 
     // other settings
-    QString namespaceSeparator;    
-    static const char DEFAULT_NAMESPACE_SEPARATOR = ':';
+    QString namespaceSeparator;
 
     RedisConnectionConfig(const QString & host = "", const QString & name = "", const int port = DEFAULT_REDIS_PORT) 
-        : name(name), host(host), port(port), sshPort(DEFAULT_SSH_PORT), namespaceSeparator(DEFAULT_NAMESPACE_SEPARATOR),
-          connectionTimeout(DEFAULT_TIMEOUT_IN_MS), executeTimeout(DEFAULT_TIMEOUT_IN_MS)
-    {};
+        : name(name), host(host), port(port),
+          namespaceSeparator(DEFAULT_NAMESPACE_SEPARATOR)
+    {}
 
     RedisConnectionConfig & operator = (RedisConnectionConfig & other) 
     {

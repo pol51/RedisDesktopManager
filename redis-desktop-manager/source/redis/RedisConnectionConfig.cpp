@@ -9,7 +9,7 @@ void RedisConnectionConfig::setSshTunnelSettings(QString host, QString user, QSt
     sshPort = port;
     sshPublicKey = publicKey;
     sshPrivateKey = privateKey;
-}; 
+}
 
 
 bool RedisConnectionConfig::isNull() 
